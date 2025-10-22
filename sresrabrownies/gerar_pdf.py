@@ -23,7 +23,7 @@ def gerar_pdf(dados, itens):
 
     # --- Renderiza o Markdown com os dados ---
     md_renderizado = template.render(**dados)
-
+    
     # --- Converte Markdown → HTML ---
     html = markdown.markdown(md_renderizado, extensions=['extra'])
 
