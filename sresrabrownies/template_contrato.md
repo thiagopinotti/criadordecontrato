@@ -116,12 +116,28 @@ presente contrato.</p>
    <li>Caso haja cancelamento do evento, o CONTRATADO possui até 90 dias após a data pré-estipulada do evento para devolução do valor total devido ao CONTRATADO, exceto 50% da multa.<br>
 </ol>
 
-# OBS
-{{ observacoes }}
-# DATA
-# Assinaturas
-<br><br>
-___________________________
+<p><b>Observações</b> {{ observacoes }}</p>
+<br>
+<br>
+
+<p style="text-align: right;"><b>Belém, {{ data }}</b></p>
+<br><br><br><br>
+
+<table style="width:100%; margin-top:50px; border-collapse:separate; border-spacing:40px 0; text-align:center;">
+  <tr>
+    <!-- Contratada -->
+    <td style="width:45%; border-top:1px solid #000; padding-top:15px;">
+      <strong>Contratante</strong><br>
+    </td>
+    <!-- Contratante -->
+    <td style="width:45%; border-top:1px solid #000; padding-top:15px;">
+      <strong>Contratada</strong><br>
+
+    </td>
+  </tr>
+</table>
+
+
 
 
 

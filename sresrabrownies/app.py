@@ -1,10 +1,16 @@
 import  streamlit as st
 import pandas as pd
+from datetime import datetime
+import locale
 
 from gerar_pdf import gerar_pdf
 
 placeholder = "escolha a opção"
 valor_total = None
+forma_pag = None
+
+locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
+data = datetime.now().strftime("%d de %B de %Y")
 
 _, center, _ = st.columns([2,2,2])
 center.image('./sresrabrownies.png', width=200, use_container_width=True)
@@ -61,7 +67,8 @@ if st.session_state.etapa == 1:
                 'cerimonial': cerimonial,
                 'local': local,
                 'horario_entrega': horario_entrega,
-                'observacoes': observacoes
+                'observacoes': observacoes,
+                'data': data
             }
             st.session_state.etapa = 2
             st.rerun()
@@ -89,7 +96,6 @@ elif st.session_state.etapa == 2:
 
 
     obs_pag = st.text_input('Observações')
-    st.warning(st.session_state.cliente['dados_pix'])
 
     with st.form("form_itens", clear_on_submit=True):
 
@@ -142,8 +148,6 @@ elif st.session_state.etapa == 2:
             st.session_state.etapa = 1
             st.rerun()
     
-    st.warning(forma_pag)
-
     if forma_pag == '50%':
         forma_pag = f"Entrada de 50% ({ valor_total }) e o restante" \
         " em até 72h ao evento."
@@ -152,22 +156,15 @@ elif st.session_state.etapa == 2:
 
     st.session_state.cliente['forma_pag'] = forma_pag
 
-
-
-    st.warning(forma_pag)
-
     if st.button('Criar Contrato'):
-        gerar_pdf(st.session_state.cliente, st.session_state.itens)
-
-"""
-- CRIAR VISUALIZAÇÃO PREVIA
-- REFATORAR ALGUMAS COISAS
-- ORGANIZAR DATA DO DOCUMENTO E ASSINATURA
-
-
-"""
-
-
+        caminho_pdf = gerar_pdf(st.session_state.cliente, st.session_state.itens)
+        with open(caminho_pdf, "rb") as file:
+            st.download_button(
+                label="📄 Baixar Contrato em PDF",
+                data=file,
+                file_name="contrato.pdf",
+                mime="application/pdf"
+            )
 
 
 

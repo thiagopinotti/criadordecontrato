@@ -4,23 +4,6 @@ from weasyprint import HTML
 import os
 from num2words import num2words
 
-# --- Dados vindos do formulário ---
-# dados = {
-#     "cliente": "Maria Fernanda Costa",
-#     "aniversariante": "João Pedro",
-#     "telefone": "(91) 99999-9999",
-#     "data_evento": "12/11/2025",
-#     "cerimonial": "Luanna Pinotti Cerimonial",
-#     "evento": "Festa de Aniversário Infantil",
-#     "local_horario": "Buffet Alegria - 17h"
-# }
-
-# itens = [
-#     {"quantidade": 2, "descricao": "Brownie Tradicional", "valor_unitario": 27.50, "valor_total": 55.00},
-#     {"quantidade": 1, "descricao": "Brownie Chocolate Branco", "valor_unitario": 30.00, "valor_total": 30.00},
-#     {"quantidade": 3, "descricao": "Brownie Meio Amargo", "valor_unitario": 28.00, "valor_total": 84.00},
-# ]
-
 def gerar_pdf(dados, itens):
 
     caminho_imagem = os.path.abspath("sresrabrownies.png")
@@ -48,3 +31,5 @@ def gerar_pdf(dados, itens):
     HTML(string=html, base_url='.').write_pdf("ficha_evento.pdf")
 
     print("✅ PDF gerado com sucesso: ficha_evento.pdf")
+
+    return os.path.abspath('ficha_evento.pdf')
