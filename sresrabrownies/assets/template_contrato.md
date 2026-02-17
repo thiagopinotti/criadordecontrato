@@ -102,11 +102,13 @@ presente contrato.</p>
 **3. FORMA DE PAGAMENTO:**
 <p> {{ tipo_pag }} – {{ forma_pag }} <br>
 {{ dados_pix }}</p>
+<p> {{ obs_pag }} </p>
 
 **4. OBRIGAÇÕES DO CONTRATANTE:**
 <ol>
     <li>Fica a CONTRATANTE, responsável pelo pagamento do valor total equivalente a encomenda acima citada em até 48h antes do evento.</li>
     <li>Fica a CONTRATANTE, responsável pela entrega da arte das TAGS para composição da embalagem em até 48H ANTES DO EVENTO;</li>
+    <li>Detalhes sobre a embalagem ( ex: cor do laço)</li>
     <li>Mudanças na embalagem padrão (celofane e laço de cetim ) devem ser informadas com pelos menos 10 dias de antecedência;</li>
 </ol>
 

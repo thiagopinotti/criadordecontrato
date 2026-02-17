@@ -1,7 +1,6 @@
 import  streamlit as st
 import pandas as pd
 from datetime import datetime
-import locale
 
 from gerar_pdf import gerar_pdf
 
@@ -9,11 +8,10 @@ placeholder = "escolha a opção"
 valor_total = None
 forma_pag = None
 
-locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
 data = datetime.now().strftime("%d de %B de %Y")
 
 _, center, _ = st.columns([2,2,2])
-center.image('./sresrabrownies.png', width=200, use_container_width=True)
+center.image('./sresrabrownies/assets/sresrabrownies.png', width=200, use_container_width=True)
 
 st.markdown("<h3 style='text-align: center;'>CONTRATO DE PRESTAÇÃO DE SERVIÇOS</h3>", unsafe_allow_html=True)
 
@@ -95,7 +93,8 @@ elif st.session_state.etapa == 2:
                                     placeholder=placeholder)
 
 
-    obs_pag = st.text_input('Observações')
+    obs_pag = "Observações - " + st.text_input('Observações')
+    st.session_state.cliente['obs_pag'] = obs_pag
 
     with st.form("form_itens", clear_on_submit=True):
 
@@ -149,12 +148,13 @@ elif st.session_state.etapa == 2:
             st.rerun()
     
     if forma_pag == '50%':
-        forma_pag = f"Entrada de 50% ({ valor_total }) e o restante" \
+        forma_pag = f"Entrada de 50% ({ valor_total / 2 }) e o restante" \
         " em até 72h ao evento."
     elif forma_pag == 'Á vista':
         forma_pag = 'Á Vista.'
 
     st.session_state.cliente['forma_pag'] = forma_pag
+    
 
     if st.button('Criar Contrato'):
         caminho_pdf = gerar_pdf(st.session_state.cliente, st.session_state.itens)
